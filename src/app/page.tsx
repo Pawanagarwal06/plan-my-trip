@@ -24,7 +24,7 @@ export default function Home() {
 
       {/* Main Content Overlay */}
       <div className="relative z-10 min-h-screen p-4 md:p-8 overflow-y-auto">
-        <div className="max-w-6xl mx-auto pt-24 md:pt-32">
+        <div className="max-w-6xl mx-auto pt-48 md:pt-56">
           <header className="mb-16 text-center text-white drop-shadow-2xl flex flex-col items-center">
             <h1 className="text-6xl md:text-8xl font-black tracking-tighter mb-6 text-transparent bg-clip-text bg-gradient-to-b from-white via-teal-100 to-teal-600">
               Plan My Trip
