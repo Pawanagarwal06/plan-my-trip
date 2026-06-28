@@ -15,7 +15,7 @@ export const maxDuration = 60;
 
 export async function POST(req: Request) {
   try {
-    const { origin, destination, mustVisit, dates, travelers, budget, travelMode, tripPacing } = await req.json();
+    const { origin, destination, mustVisit, dates, travelers, budget, travelMode, tripPacing, tripTheme } = await req.json();
 
     // Basic Input Validation
     if (!destination || !dates || !travelers || !budget || !travelMode) {
@@ -78,6 +78,7 @@ export async function POST(req: Request) {
       Number of Travelers: ${travelers}
       Total Budget: ₹${budget}
       Preferred Travel Mode: ${travelMode}
+      Trip Vibe / Theme: ${tripTheme || 'Not specified'}
 
       Critical constraints:
       1. All monetary values MUST be in INR (₹) and realistic for current Indian market rates.
@@ -95,6 +96,7 @@ export async function POST(req: Request) {
       10. PACING RULE: The user selected "${tripPacing || 'Action-Packed'}" pacing. 
           - If "Action-Packed", calculate exact realistic time blocks (e.g. 09:00 AM - 11:30 AM) and pack the days efficiently to cover maximum ground.
           - If "Relaxed", ensure a slow, relaxed pace with plenty of downtime, late starts (e.g. 11:00 AM), and longer durations at fewer places.
+      11. THEME RULE: The user selected a Trip Vibe of "${tripTheme || 'Not specified'}". You MUST heavily prioritize activities, locations, and recommendations that match this vibe. For example, if "Spiritual & Temples" is selected, you must prioritize top-tier temples, jyotirlingas, ghats, and religious sites in the itinerary, especially in India.
 
       Generate a highly detailed and realistic plan fitting the exact JSON schema provided.
     `;

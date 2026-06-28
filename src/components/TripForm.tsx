@@ -23,6 +23,7 @@ export default function TripForm({ setSceneType }: { setSceneType: (type: Destin
   const [budget, setBudget] = useState<number[]>([40000]);
   const [travelMode, setTravelMode] = useState<'Budget' | 'Comfort' | 'Luxury'>('Comfort');
   const [tripPacing, setTripPacing] = useState<'Action-Packed' | 'Relaxed'>('Action-Packed');
+  const [tripTheme, setTripTheme] = useState<'Spiritual & Temples' | 'Nature & Adventure' | 'Leisure & Chill' | 'Culture & History'>('Leisure & Chill');
 
   const { object, submit, isLoading, error } = useObject({
     api: '/api/generate-trip',
@@ -51,7 +52,7 @@ export default function TripForm({ setSceneType }: { setSceneType: (type: Destin
       formattedDates = `${days} Days (${formattedStart} - ${formattedEnd})`;
     }
 
-    submit({ origin, destination, mustVisit, dates: formattedDates, travelers, budget: budget[0], travelMode, tripPacing });
+    submit({ origin, destination, mustVisit, dates: formattedDates, travelers, budget: budget[0], travelMode, tripPacing, tripTheme });
   };
 
   return (
@@ -145,37 +146,55 @@ export default function TripForm({ setSceneType }: { setSceneType: (type: Destin
           </div>
         </div>
 
-        <div className="flex flex-col md:flex-row gap-6 md:gap-12 items-start md:items-center">
+        <div className="flex flex-col gap-6">
           <div className="flex flex-wrap gap-2 md:gap-4 items-center">
-            <Label className="mr-2">Travel Mode:</Label>
-            {['Budget', 'Comfort', 'Luxury'].map((mode) => (
+            <Label className="mr-2">Trip Vibe:</Label>
+            {['Spiritual & Temples', 'Nature & Adventure', 'Leisure & Chill', 'Culture & History'].map((theme) => (
               <button
-                key={mode}
+                key={theme}
                 type="button"
-                onClick={() => setTravelMode(mode as any)}
+                onClick={() => setTripTheme(theme as any)}
                 className={`px-4 py-2 rounded-full border transition-all ${
-                  travelMode === mode ? 'bg-white text-black border-white' : 'border-white/30 hover:bg-white/20'
+                  tripTheme === theme ? 'bg-purple-500 text-white border-purple-500 shadow-[0_0_15px_rgba(168,85,247,0.5)]' : 'border-white/30 hover:bg-white/20 text-gray-300'
                 }`}
               >
-                {mode}
+                {theme}
               </button>
             ))}
           </div>
 
-          <div className="flex flex-wrap gap-2 md:gap-4 items-center">
-            <Label className="mr-2">Pacing:</Label>
-            {['Action-Packed', 'Relaxed'].map((mode) => (
-              <button
-                key={mode}
-                type="button"
-                onClick={() => setTripPacing(mode as any)}
-                className={`px-4 py-2 rounded-full border transition-all ${
-                  tripPacing === mode ? 'bg-teal-500 text-white border-teal-500' : 'border-white/30 hover:bg-white/20 text-gray-300'
-                }`}
-              >
-                {mode}
-              </button>
-            ))}
+          <div className="flex flex-col md:flex-row gap-6 md:gap-12 items-start md:items-center">
+            <div className="flex flex-wrap gap-2 md:gap-4 items-center">
+              <Label className="mr-2">Travel Mode:</Label>
+              {['Budget', 'Comfort', 'Luxury'].map((mode) => (
+                <button
+                  key={mode}
+                  type="button"
+                  onClick={() => setTravelMode(mode as any)}
+                  className={`px-4 py-2 rounded-full border transition-all ${
+                    travelMode === mode ? 'bg-white text-black border-white' : 'border-white/30 hover:bg-white/20'
+                  }`}
+                >
+                  {mode}
+                </button>
+              ))}
+            </div>
+
+            <div className="flex flex-wrap gap-2 md:gap-4 items-center">
+              <Label className="mr-2">Pacing:</Label>
+              {['Action-Packed', 'Relaxed'].map((mode) => (
+                <button
+                  key={mode}
+                  type="button"
+                  onClick={() => setTripPacing(mode as any)}
+                  className={`px-4 py-2 rounded-full border transition-all ${
+                    tripPacing === mode ? 'bg-teal-500 text-white border-teal-500' : 'border-white/30 hover:bg-white/20 text-gray-300'
+                  }`}
+                >
+                  {mode}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
 
