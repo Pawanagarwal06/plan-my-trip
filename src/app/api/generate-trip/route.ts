@@ -106,6 +106,7 @@ export async function POST(req: Request) {
           - If "Action-Packed", calculate exact realistic time blocks (e.g. 09:00 AM - 11:30 AM) and pack the days efficiently to cover maximum ground.
           - If "Relaxed", ensure a slow, relaxed pace with plenty of downtime, late starts (e.g. 11:00 AM), and longer durations at fewer places.
       11. THEME RULE: The user selected Trip Vibe(s) of "${tripThemeStr}". You MUST heavily prioritize activities, locations, and recommendations that match these combined vibes. For example, if both "Spiritual & Temples" and "Nature & Adventure" are selected, try to mix beautiful remote temples with nature hikes or outdoor scenery.
+          - RELIGIOUS SENSITIVITY: If "Spiritual & Temples" is selected, strongly deduce the user's faith based on their "Must Visit" places or destination. If they suggest a Hindu site, strictly recommend ONLY other Hindu temples and absolutely avoid mosques/dargahs in the itinerary. Do NOT mix religious sites of completely different faiths in the same trip to respect Indian religious travel preferences.
 
       Generate a highly detailed and realistic plan fitting the exact JSON schema provided.
     `;
